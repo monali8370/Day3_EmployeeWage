@@ -1,45 +1,36 @@
 package com.employeewage;
 
 public class Day3_EmployeeWage {
-    static final int WAGE_PER_HOUR = 20;
-    static final int FULL_DAY_HOUR = 8;
-    static final int PART_TIME_HOUR = 4;
-    static final int IS_FULL_TIME = 2;
-    static final int IS_PART_TIME = 1;
-    static final int WORKING_DAYS_PER_MONTH = 20;
-
+    public static final int IS_PART_TIME=1,IS_FULL_TIME=2;
+    public static final int EMP_RATE_PER_HOUR=20;
+    public static final int NUM_OF_WORKING_DAYS=2;
+    public static final int MAX_HRS_IN_MONTH=10;
     public static void main(String[] args) {
-        System.out.println("Welcome to employee wage");
-        int totalWage = 0;
-        int dailyWage = 0;
-        int dayCount = 1;
-        while (dayCount <=WORKING_DAYS_PER_MONTH  ) {
-            int employeeCheck = (int) Math.floor(Math.random() * 10) % 3;
-            System.out.println(employeeCheck);
-
-            switch (employeeCheck) {
+        // Variables
+        int empHrs=0,totalWorkingDays=0,totalEmpHrs=0;
+        //Computation
+        while (totalEmpHrs<=MAX_HRS_IN_MONTH && totalWorkingDays<NUM_OF_WORKING_DAYS){
+            totalWorkingDays++;
+            int empCheck=(int) Math.floor(Math.random()*10)%3;
+            switch (empCheck){
                 case IS_PART_TIME:
-                    dailyWage = PART_TIME_HOUR * WAGE_PER_HOUR;
-                    System.out.println("Employee is part time " +dailyWage);
+                    empHrs=4;
                     break;
                 case IS_FULL_TIME:
-                    dailyWage = FULL_DAY_HOUR * WAGE_PER_HOUR;
-                    System.out.println("Employee is full time " +dailyWage);
+                    empHrs=8;
                     break;
                 default:
-                    System.out.println("Employee is Absent");
+                    empHrs=0;
                     break;
             }
-            totalWage= totalWage + dailyWage;
-            dayCount++;
+            totalEmpHrs+=empHrs;
+            System.out.println("Day#: "+totalWorkingDays+" Emp Hr: "+empHrs);
         }
-        System.out.println(" daily wage for day "+dayCount+" =>" + dailyWage);
-        System.out.println(" daily wage for month "+dayCount+" =>" + totalWage);
-        System.out.println("Employee daily wage is " + dailyWage);
-
+        int totalEmpWage=totalEmpHrs*EMP_RATE_PER_HOUR;
+        System.out.println("Total emp wage: "+totalEmpWage);
     }
+}
 
-    }
 
     
 
